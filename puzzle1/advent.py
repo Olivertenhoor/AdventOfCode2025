@@ -4,11 +4,11 @@ def day1first():
     count = 0
     with open("input.txt", "r") as f:
         for line in f:
-            # print(line)
+            number = int(line[1:0])
             if line[0] == "L":
-                dial = (dial - int(line[1:])) % 100
+                dial = (dial - number) % 100
             else:
-                dial = (dial + int(line[1:])) % 100
+                dial = (dial + number) % 100
             if dial == 0:
                 count += 1
     return count
@@ -18,22 +18,36 @@ def day1first():
 def day1second():
     dial = 50
     count = 0
-    with open("input.txt", "r") as f:
+    with open("input2.txt", "r") as f:
         for line in f:
-            # print(line)
+            number = int(line[1:])
             if line[0] == "L":
-                # if (dial - int(line[1:])) < 0:
-                #     count += 1
-                count += -((dial - int(line[1:])))//100
-                dial = (dial - int(line[1:])) % 100
-
+                for _ in range(number):
+                    dial = (dial -1 ) % 100
+                    if dial == 0:
+                        count += 1
             else:
-                count += (dial + int(line[1:]))//100
-                dial = (dial + int(line[1:])) % 100
+                for _ in range(number):
+                    dial =( dial +1) % 100
+                    if dial == 0:
+                        count += 1
 
-            # if dial == 0:
-                # count += 1
-    return count
+            #Got frustratd with trying an elegant way
+            
+            # if line[0] == "L":
+                
+            #     count += abs((dial - number) // 100)
+            #     if dial == 0 and number > 100:
+            #         count -= 1
+            #     dial = (dial + number) % 100
+            #     if dial == 0 and number < 100:
+            #         count += 1
+                
+            # else:
+            #     count += (dial + number) // 100
+            #     dial = (dial + number) % 100
+
+        return count
     
 
 
@@ -41,5 +55,5 @@ def day1second():
 
 
 if __name__ == "__main__":
-    # print(-128 // 100)
+    # print(20%100)
     print(day1second())

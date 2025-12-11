@@ -65,13 +65,12 @@ def findLargestNumber(index, numbers):
         if n - i == k:
             return numbers[i:]
 
-        # Option 1: take s[i]
+        # Option 1
         take = numbers[i] + dp(i + 1, k - 1)
 
-        # Option 2: skip s[i]
+        # Option 2
         skip = dp(i + 1, k)
 
-        # Lexicographically largest wins
         return max(take, skip)
 
     return dp(0, index)
